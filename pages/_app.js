@@ -5,7 +5,7 @@ import Footer from '../components/footer';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div>
+    <div className="flex flex-col h-screen justify-between">
       <Header />
       <Component {...pageProps} />
       <Footer />
