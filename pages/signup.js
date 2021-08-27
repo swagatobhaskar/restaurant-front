@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-import Instance from '../components/utils/axiosInstance';
+import Instance from '../utils/axiosInstance';
 
 export default function Signup() {
 
