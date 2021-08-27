@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import router from 'next/router';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Instance from '../utils/axiosInstance';
 
@@ -8,11 +8,14 @@ export default function Logout() {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
 
+    const router = useRouter();
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const data = {'email': email, 'password': password};
         Instance.post('user/login/', data)
             .then(res => console.log(res))
+            .then(router.back())
             .catch(err => console.log(err));
     };
 
