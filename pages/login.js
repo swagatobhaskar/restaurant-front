@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import Instance from '../utils/axiosInstance';
+import Instance from '..components/utils/axiosInstance';
 
 export default function Logout() {
 
@@ -25,7 +25,7 @@ export default function Logout() {
                 <h2 className="block text-center w-full p-1 mb-2 -mt-1">Log In</h2>
                 <form className="mb-4 md:flex md:flex-wrap md:justify-between">
                     <div className="flex flex-col mb-4 md:w-full">
-                        <label htmlFor="email" className="mb-2 text-md font-bold">Email</label>
+                        <label htmlFor="email" className="mb-2 text-md font-bold text-grey-600">Email</label>
                         <input
                             className="focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none rounded-sm border border-gray-200 py-1 px-2 text-gray-900"
                             type="text"
@@ -37,7 +37,7 @@ export default function Logout() {
                         />
                     </div>
                     <div className="flex flex-col mb-4 md:w-full">
-                        <label htmlFor="password" className="mb-2 text-md font-bold">Password</label>
+                        <label htmlFor="password" className="mb-2 text-md font-bold text-grey-600">Password</label>
                         <input
                             className="focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none rounded-sm border border-gray-200 py-1 px-2 text-gray-900"
                             type="password"

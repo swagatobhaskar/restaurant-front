@@ -1,16 +1,27 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
-import Instance from '../utils/axiosInstance';
+import { useState, useEffect } from 'react';
+import Instance from '../components/utils/axiosInstance';
 
 export default function Signup() {
 
     const [ email, setEmail ] = useState('');
     const [ passwordOne, setPasswordOne ] = useState('');
     const [ passwordTwo, setPasswordTwo ] = useState('');
-    const [ passwordsDiffError ,setPasswordsDiffError ] = useState(false);
+    const [ passwordsDiffError, setPasswordsDiffError ] = useState(false);
 
     const router = useRouter();
+
+    console.log("Email, Pass1, Pass2: ", email, " | ", passwordOne, " | ", passwordTwo);
+
+    useEffect(() => {
+        if ( passwordOne == '' || passwordTwo == '' ) {
+            setPasswordsDiffError(false);
+        }
+        if ( passwordTwo !== passwordOne) {
+            setPasswordsDiffError(true);
+        }
+    }, [passwordOne ,passwordTwo])
 
     const validateForm = () => {
         if ( passwordOne !== passwordTwo ){
@@ -26,6 +37,7 @@ export default function Signup() {
         const data= {'email': email, 'password': passwordOne};
         Instance.post('user/signup/', data)
             .then(res => console.log(res))
+            .then(router.back())
             .catch(err => console.log(err))
     };
 
@@ -35,7 +47,7 @@ export default function Signup() {
                 <h2 className="block text-center w-full p-1 mb-2 -mt-1">Sign Up</h2>
                 <form className="mb-4 md:flex md:flex-wrap md:justify-between">
                     <div className="flex flex-col mb-4 md:w-full">
-                        <label htmlFor="email" className="mb-2 text-md font-bold">Email</label>
+                        <label htmlFor="email" className="mb-2 text-md font-semibold text-gray-700">Email</label>
                         <input
                             className="focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none rounded-sm border border-gray-200 py-1 px-2 text-gray-900"
                             type="text"
@@ -43,35 +55,35 @@ export default function Signup() {
                             placeholder="Email"
                             required
                             autoComplete="email"
-                            onChange={(e)=>setEmail(e)}
+                            onChange={(e)=>setEmail(e.target.value)}
                         />
                     </div>
                     <div className="flex flex-col mb-4 md:w-full">
-                        <label htmlFor="email" className="mb-2 text-md font-bold">Password</label>
+                        <label htmlFor="email" className="mb-2 text-md font-semibold text-gray-700">Password</label>
                         <input
                             className="focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none rounded-sm border border-gray-200 py-1 px-2 text-gray-900"
                             type="password"
-                            name="password_one"
+                            name="passwordOne"
                             placeholder="Password"
                             required
-                            onChange={(e)=>setPasswordOne(e)}
+                            onChange={(e)=>setPasswordOne(e.target.value)}
                         />
                     </div>
                     <div className="flex flex-col mb-4 md:w-full">
-                        <label htmlFor="email" className="mb-2 text-md font-bold">Re-type Password</label>
+                        <label htmlFor="email" className="mb-2 text-md font-semibold text-gray-700">Re-type Password</label>
                         <input
                             className="focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none rounded-sm border border-gray-200 py-1 px-2 text-gray-900"
                             type="password"
-                            name="password_two"
+                            name="passwordTwo"
                             placeholder="Confirm Password"
                             required
-                            onChange={(e)=>setPasswordTwo(e)}
+                            onChange={(e)=>setPasswordTwo(e.target.value)}
                         />
                     </div>
                     { passwordsDiffError ? (
-                        <label className="text-red-600 font-medium text-sm mb-3 mx-auto min-w-full text-center">
+                        <p className="text-red-600 font-medium text-sm mb-3 mx-auto min-w-full text-center">
                             Passwords do not match!
-                        </label>
+                        </p>
                     ) : null }
                     <button
                         type="submit"
