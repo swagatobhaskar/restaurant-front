@@ -53,12 +53,17 @@ const menuItems = [
 
 export default function Menus() {
     return (
-        <ul className="sm:m-auto sm:w-5/6 sm:rounded-sm border-gray-800 flex flex-col h-full w-full">
+        <ul className="sm:m-auto sm:w-5/6 sm:rounded-sm border-gray-800 h-full w-full">
             { menuItems.map(menu => (
                 <div key={menu.id} className="m-10 px-10 rounded-md border-gray-700 shadow-md">
-                    <li className="list-none flex flex-row">
-                        <img src="#" alt="menu-photo" width="200" height="200" />
-                        <h4 className="font-semibold tracking-wider">{menu.name}</h4>
+                    <li className="list-none flex sm:flex-row flex-col">
+                        <img src="#" alt="menu-photo" width="200" height="200" className="bg-gray-300 m-2 p-3 shadow-md" />
+                        <div className="px-3 py-2 text-center w-full">
+                            <h4 className="font-semibold tracking-wider text-center">{menu.name}</h4>
+                            <span className="flex flex-wrap content-evenly">
+                                <p>Ingredients:</p>
+                            </span>
+                        </div>
                     </li>
                 </div>
             ))}
