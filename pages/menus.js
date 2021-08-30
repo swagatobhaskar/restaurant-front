@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Instance from '../utils/axiosInstance';
 import Image from 'next/image';
+import axios from 'axios';
 
-const menuItems = [
+const menus = [
     {
         "id": 1,
         "ingredients": [
@@ -52,9 +53,20 @@ const menuItems = [
 ]
 
 export default function Menus() {
+
+    const [ menuItems, setMenuItems ] = useState([]);
+    console.log("menu-items: ", menuItems);
+
+    useEffect(() => {
+        Instance.get('api/menus/')
+             .then(res => setMenuItems(res.data.items))
+             .catch(err => console.log(err));
+    }, [])  // render first time only
+
     return (
+        <div>
         <ul className="sm:m-auto sm:w-5/6 sm:rounded-sm border-gray-800 h-full w-full">
-            { menuItems.map(menu => (
+            { menus.map(menu => (
                 <div key={menu.id} className="m-10 px-10 rounded-md border-gray-700 shadow-md">
                     <li className="list-none flex sm:flex-row flex-col">
                         <img src="#" alt="menu-photo" width="200" height="200" className="bg-gray-300 m-2 p-3 shadow-md" />
@@ -68,5 +80,7 @@ export default function Menus() {
                 </div>
             ))}
         </ul>
+        <Image src={menuItems[0].photo} alt="img" height="300" width="250" />
+        </div>
     )
 }
