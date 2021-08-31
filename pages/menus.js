@@ -59,17 +59,19 @@ export default function Menus() {
 
     useEffect(() => {
         Instance.get('api/menus/')
-             .then(res => setMenuItems(res.data.items))
+             .then(res => setMenuItems(res.data))
              .catch(err => console.log(err));
     }, [])  // render first time only
 
     return (
         <div>
         <ul className="sm:m-auto sm:w-5/6 sm:rounded-sm border-gray-800 h-full w-full">
-            { menus.map(menu => (
+            { menuItems.map(menu => (
                 <div key={menu.id} className="m-10 px-10 rounded-md border-gray-700 shadow-md">
                     <li className="list-none flex sm:flex-row flex-col">
-                        <img src="#" alt="menu-photo" width="200" height="200" className="bg-gray-300 m-2 p-3 shadow-md" />
+                        <div className="bg-white p-2 shadow-xl">
+                            <Image src={menu.photo} alt="menu-photo" width="200" height="200" className="rounded-md"/>
+                        </div>
                         <div className="px-3 py-2 text-center w-full">
                             <h4 className="font-semibold tracking-wider text-center">{menu.name}</h4>
                             <span className="flex flex-wrap content-evenly">
@@ -80,7 +82,6 @@ export default function Menus() {
                 </div>
             ))}
         </ul>
-        <Image src={menuItems[0].photo} alt="img" height="300" width="250" />
         </div>
     )
 }
