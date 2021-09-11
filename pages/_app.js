@@ -1,5 +1,5 @@
-//import '../styles/globals.css'
-import 'tailwindcss/tailwind.css'
+import '../styles/globals.css'
+//import 'tailwindcss/tailwind.css'   I think it's better to use @tailwind directive in global.css
 import Header from '../components/header';
 import Footer from '../components/footer';
 

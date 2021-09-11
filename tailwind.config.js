@@ -5,13 +5,24 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      textColor: {
+        skin: { // any name for this text color group
+          base: 'var(--color-text-base)',
+        }
+      },
+      backgroundColor: {
+        
+      },
       fontFamily: {
         fancy: ['Dancing Script']
       },
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      backgroundColor: ['group-focus'],
+      visibility: ['hover', 'focus', 'group-focus'],
+    },
   },
   plugins: [],
 }

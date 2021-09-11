@@ -5,7 +5,7 @@ export default function Header() {
     return (
         <div className="relative block text-center h-11 border-b-2 border-yellow-400 border-opacity-50">
             <Link href='/' passHref>
-                <a  className="my-3 inline-block font-fancy text-xl text-green-500 ">
+                <a  className="my-3 inline-block font-fancy text-xl text-skin-base ">
                     Nous Mangeons
                 </a>
             </Link>
